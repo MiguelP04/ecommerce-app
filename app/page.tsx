@@ -1,65 +1,74 @@
-import Image from "next/image";
+import { ProductList } from "@/components/common/ProductList";
+import { Banner } from "@/components/layout/Banner";
+import { MOCK_PRODUCTS } from "@/constants/products";
 
-export default function Home() {
+export default async function Home({
+  searchParams,
+}: {
+  searchParams: Promise<{ q?: string }>;
+}) {
+  const { q } = await searchParams;
+  const query = q?.toLowerCase() || "";
+
+  const filteredProducts = MOCK_PRODUCTS.filter((product) => {
+    return (
+      product.title.toLowerCase().includes(query) ||
+      product.description.toLowerCase().includes(query) ||
+      product.category.name.toLowerCase().includes(query)
+    );
+  });
+
   return (
-    <div className="flex min-h-screen items-center justify-center bg-zinc-50 font-sans dark:bg-black">
-      <main className="flex min-h-screen w-full max-w-3xl flex-col items-center justify-between py-32 px-16 bg-white dark:bg-black sm:items-start">
-        <Image
-          className="dark:invert"
-          src="/next.svg"
-          alt="Next.js logo"
-          width={100}
-          height={20}
-          priority
+    <div className="flex flex-col min-h-screen">
+      {/* Hero Section */}
+      <Banner />
+
+      {/* Featured Products */}
+      <div id="products" className="bg-white dark:bg-black pt-10">
+        <ProductList
+          products={filteredProducts}
+          title={query ? `Resultados para "${query}"` : "Nuestros Destacados"}
+          subtitle={
+            query
+              ? `Encontramos ${filteredProducts.length} productos que coinciden con tu búsqueda.`
+              : "Una cuidada selección de objetos diseñados para elevar tu día a día."
+          }
         />
-        <div className="flex flex-col items-center gap-6 text-center sm:items-start sm:text-left">
-          <h1 className="max-w-xs text-3xl font-semibold leading-10 tracking-tight text-black dark:text-zinc-50">
-            To get started, edit the page.tsx file.
-          </h1>
-          <p className="max-w-md text-lg leading-8 text-zinc-600 dark:text-zinc-400">
-            Looking for a starting point or more instructions? Head over to{" "}
-            <a
-              href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-              className="font-medium text-zinc-950 dark:text-zinc-50"
-            >
-              Templates
-            </a>{" "}
-            or the{" "}
-            <a
-              href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-              className="font-medium text-zinc-950 dark:text-zinc-50"
-            >
-              Learning
-            </a>{" "}
-            center.
-          </p>
+
+        {filteredProducts.length === 0 && (
+          <div className="flex flex-col items-center justify-center py-20 text-center">
+            <div className="bg-zinc-100 dark:bg-zinc-900 p-6 rounded-full mb-6">
+              <span className="text-4xl">🔍</span>
+            </div>
+            <h3 className="text-xl font-bold mb-2">No se encontraron productos</h3>
+            <p className="text-zinc-500 max-w-md mx-auto">
+              No pudimos encontrar nada que coincida con "{query}".
+              Intenta con otros términos o revisa la ortografía.
+            </p>
+          </div>
+        )}
+      </div>
+
+      {/* Benefits Section */}
+      <section className="py-24 bg-zinc-50 dark:bg-zinc-950">
+        <div className="container mx-auto px-4">
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-12">
+            {[
+              { title: "Calidad Premium", desc: "Cada producto es seleccionado meticulosamente para garantizar la máxima durabilidad." },
+              { title: "Envío Global", desc: "Llegamos a cualquier rincón del mundo con envíos extremadamente seguros." },
+              { title: "Soporte 24/7", desc: "Nuestro equipo está siempre disponible para ayudarte con cualquier duda." }
+            ].map((benefit, i) => (
+              <div key={i} className="text-center group p-8 rounded-2xl hover:bg-white dark:hover:bg-zinc-900 transition-all hover:shadow-xl border border-transparent hover:border-zinc-100 dark:hover:border-zinc-800">
+                <div className="w-16 h-16 bg-zinc-900 dark:bg-white rounded-2xl mx-auto mb-6 flex items-center justify-center text-white dark:text-black font-bold text-2xl group-hover:scale-110 transition-transform">
+                  {i + 1}
+                </div>
+                <h3 className="text-xl font-bold mb-4">{benefit.title}</h3>
+                <p className="text-zinc-600 dark:text-zinc-400 leading-relaxed">{benefit.desc}</p>
+              </div>
+            ))}
+          </div>
         </div>
-        <div className="flex flex-col gap-4 text-base font-medium sm:flex-row">
-          <a
-            className="flex h-12 w-full items-center justify-center gap-2 rounded-full bg-foreground px-5 text-background transition-colors hover:bg-[#383838] dark:hover:bg-[#ccc] md:w-[158px]"
-            href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <Image
-              className="dark:invert"
-              src="/vercel.svg"
-              alt="Vercel logomark"
-              width={16}
-              height={16}
-            />
-            Deploy Now
-          </a>
-          <a
-            className="flex h-12 w-full items-center justify-center rounded-full border border-solid border-black/[.08] px-5 transition-colors hover:border-transparent hover:bg-black/[.04] dark:border-white/[.145] dark:hover:bg-[#1a1a1a] md:w-[158px]"
-            href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Documentation
-          </a>
-        </div>
-      </main>
+      </section>
     </div>
   );
 }
