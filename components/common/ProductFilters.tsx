@@ -155,7 +155,7 @@ export function ProductFilters() {
                     className={cn(
                       "h-3 w-3",
                       i < rating
-                        ? "fill-zinc-900 text-zinc-900 dark:fill-white dark:text-white"
+                        ? "fill-yellow-400 text-yellow-400"
                         : "text-zinc-300 dark:text-zinc-700"
                     )}
                   />
