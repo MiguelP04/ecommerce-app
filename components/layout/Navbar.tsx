@@ -13,6 +13,7 @@ import {
   SheetTitle,
   SheetTrigger,
 } from "@/components/ui/sheet";
+import { CartSheet, useCart } from "@/components/common/ShoppingCart";
 import { cn } from "@/lib/utils";
 
 const navigation = [
@@ -112,16 +113,7 @@ export function Navbar() {
                 <Search className="h-5 w-5" />
               </Button>
 
-              <Button
-                variant="ghost"
-                size="icon"
-                className="relative rounded-full hover:bg-zinc-100 dark:hover:bg-zinc-800"
-              >
-                <ShoppingCart className="h-5 w-5" />
-                <span className="absolute -right-1 -top-1 flex h-4 w-4 items-center justify-center rounded-full bg-black text-[10px] font-bold text-white dark:bg-white dark:text-black">
-                  0
-                </span>
-              </Button>
+              <CartSheet />
 
               {/* Mobile Menu */}
               <Sheet>

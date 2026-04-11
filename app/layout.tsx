@@ -3,6 +3,7 @@ import { Inter, Outfit } from "next/font/google";
 import { Suspense } from "react";
 import "./globals.css";
 import { Navbar } from "@/components/layout/Navbar";
+import { CartProvider } from "@/components/common/ShoppingCart";
 
 const inter = Inter({
   variable: "--font-inter",
@@ -30,9 +31,11 @@ export default function RootLayout({
         className={`${inter.variable} ${outfit.variable} antialiased selection:bg-black selection:text-white dark:selection:bg-white dark:selection:text-black font-sans`}
       >
         <Suspense fallback={<div className="h-16" />}>
-          <Navbar />
+          <CartProvider>
+            <Navbar />
+            <main>{children}</main>
+          </CartProvider>
         </Suspense>
-        <main>{children}</main>
       </body>
     </html>
   );
