@@ -103,7 +103,7 @@ export function Navbar() {
                 placeholder="Buscar productos..."
                 value={query}
                 onChange={handleInputChange}
-                className="h-9 rounded-full bg-zinc-100 pl-9 focus-visible:ring-black dark:bg-zinc-800 dark:focus-visible:ring-white"
+                className="h-9 rounded-full bg-zinc-100 pl-9 border-0 focus-visible:ring-0 dark:bg-zinc-800 dark:focus-visible:ring-white"
               />
             </form>
 
@@ -155,7 +155,7 @@ export function Navbar() {
                           placeholder="Buscar..."
                           value={query}
                           onChange={handleInputChange}
-                          className="pl-9"
+                          className="pl-9 border-0 focus-visible:ring-0"
                         />
                       </form>
                       <Button className="w-full bg-black text-white hover:bg-zinc-800 dark:bg-white dark:text-black dark:hover:bg-zinc-200">
