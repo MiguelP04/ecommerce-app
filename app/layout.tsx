@@ -1,22 +1,22 @@
 import type { Metadata } from "next";
-import { Inter, Outfit } from "next/font/google";
+import { Nunito_Sans, Rubik } from "next/font/google";
 import { Suspense } from "react";
 import "./globals.css";
 import { Navbar } from "@/components/layout/Navbar";
 import { CartProvider } from "@/components/common/ShoppingCart";
 
-const inter = Inter({
-  variable: "--font-inter",
+const nunitoSans = Nunito_Sans({
+  variable: "--font-nunito",
   subsets: ["latin"],
 });
 
-const outfit = Outfit({
-  variable: "--font-outfit",
+const rubik = Rubik({
+  variable: "--font-rubik",
   subsets: ["latin"],
 });
 
 export const metadata: Metadata = {
-  title: "Gravity Store | Tu E-Commerce Premium",
+  title: "Inv Mis 3 Hermanas | Tu Tienda de Confianza",
   description: "La mejor selección de productos con la mejor experiencia de usuario.",
 };
 
@@ -28,7 +28,7 @@ export default function RootLayout({
   return (
     <html lang="es">
       <body
-        className={`${inter.variable} ${outfit.variable} antialiased selection:bg-black selection:text-white dark:selection:bg-white dark:selection:text-black font-sans`}
+        className={`${nunitoSans.variable} ${rubik.variable} antialiased selection:bg-emerald-700 selection:text-white dark:selection:bg-emerald-600 dark:selection:text-white font-sans`}
       >
         <Suspense fallback={<div className="h-16" />}>
           <CartProvider>

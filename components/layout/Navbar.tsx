@@ -63,10 +63,7 @@ export function Navbar() {
   return (
     <nav
       className={cn(
-        "fixed top-0 z-50 w-full transition-all duration-300",
-        isScrolled
-          ? "border-b bg-white/80 backdrop-blur-md dark:bg-black/80"
-          : "bg-transparent"
+        "fixed top-0 z-50 w-full transition-all duration-300 border-b bg-background/80 backdrop-blur-md"
       )}
     >
       <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
@@ -74,11 +71,11 @@ export function Navbar() {
           {/* Logo */}
           <div className="flex flex-shrink-0">
             <Link href="/" className="group flex items-center gap-2">
-              <div className="flex h-10 w-10 items-center justify-center rounded-xl bg-black text-white transition-all group-hover:scale-105 dark:bg-white dark:text-black">
+              <div className="flex h-10 w-10 items-center justify-center rounded-xl bg-primary text-primary-foreground transition-all group-hover:scale-105">
                 <ShoppingCart className="h-6 w-6" strokeWidth={2.5} />
               </div>
-              <span className="text-xl font-bold tracking-tight text-black dark:text-white">
-                GRAVITY<span className="text-zinc-500">STORE</span>
+              <span className="text-xl font-bold tracking-tight text-foreground">
+                INV<span className="text-primary">MIS3HERMANAS</span>
               </span>
             </Link>
           </div>
@@ -99,17 +96,17 @@ export function Navbar() {
           {/* Search & Actions */}
           <div className="flex flex-1 items-center justify-end gap-2 sm:gap-4">
             <form onSubmit={handleSearch} className="relative hidden w-full max-w-[200px] lg:block">
-              <Search className="absolute left-3 top-1/2 h-4 w-4 -translate-y-1/2 text-zinc-400" />
+              <Search className="absolute left-3 top-1/2 h-4 w-4 -translate-y-1/2 text-muted-foreground" />
               <Input
                 placeholder="Buscar productos..."
                 value={query}
                 onChange={handleInputChange}
-                className="h-9 rounded-full bg-zinc-100 pl-9 border-0 focus-visible:ring-0 dark:bg-zinc-800 dark:focus-visible:ring-white"
+                className="h-9 rounded-full bg-muted pl-9 pr-4 border-2 border-transparent transition-all duration-200 focus:border-primary focus:bg-background focus:outline-none focus:ring-0"
               />
             </form>
 
             <div className="flex items-center gap-1 sm:gap-2">
-              <Button variant="ghost" size="icon" className="md:hidden">
+              <Button variant="ghost" size="icon" className="md:hidden hover:bg-muted">
                 <Search className="h-5 w-5" />
               </Button>
 
@@ -150,7 +147,7 @@ export function Navbar() {
                           className="pl-9 border-0 focus-visible:ring-0"
                         />
                       </form>
-                      <Button className="w-full bg-black text-white hover:bg-zinc-800 dark:bg-white dark:text-black dark:hover:bg-zinc-200">
+                      <Button className="w-full bg-primary text-primary-foreground hover:bg-primary/90 transition-colors">
                         Inicia Sesión
                       </Button>
                     </div>
