@@ -1,7 +1,8 @@
 import Image from "next/image";
 import Link from "next/link";
-import { ShoppingCart, Star } from "lucide-react";
+import { Star } from "lucide-react";
 import { Product } from "@/types";
+import { AddToCartButton } from "./ShoppingCart";
 
 interface ProductCardProps {
   product: Product;
@@ -13,7 +14,7 @@ export const ProductCard = ({ product }: ProductCardProps) => {
   const price = defaultVariant.price;
 
   return (
-    <div className="group relative overflow-hidden rounded-xl bg-white transition-all hover:shadow-xl dark:bg-zinc-900 border border-zinc-100 dark:border-zinc-800">
+    <div className="group relative flex flex-col overflow-hidden rounded-xl bg-white transition-all hover:shadow-xl dark:bg-zinc-900 border border-zinc-100 dark:border-zinc-800">
       <Link href={`/product/${product.slug}`} className="block overflow-hidden">
         <div className="relative aspect-square w-full overflow-hidden">
           <Image
@@ -27,7 +28,7 @@ export const ProductCard = ({ product }: ProductCardProps) => {
         </div>
       </Link>
 
-      <div className="p-5">
+      <div className="p-5 flex flex-col flex-1">
         <div className="flex items-center justify-between mb-2">
           <span className="text-xs font-medium uppercase tracking-wider text-zinc-500">
             {product.category.name}
@@ -39,22 +40,22 @@ export const ProductCard = ({ product }: ProductCardProps) => {
         </div>
 
         <Link href={`/product/${product.slug}`}>
-          <h3 className="mb-2 te  xt-lg font-bold text-zinc-900 transition-colors hover:text-zinc-600 dark:text-zinc-100 dark:hover:text-zinc-300">
+          <h3 className="mb-2 text-lg font-bold text-zinc-900 transition-colors hover:text-zinc-600 dark:text-zinc-100 dark:hover:text-zinc-300">
             {product.title}
           </h3>
         </Link>
 
-        <p className="mb-4 text-sm text-zinc-500 line-clamp-2 dark:text-zinc-400">
+        <p className="mb-4 text-sm text-zinc-500 line-clamp-2 dark:text-zinc-400 flex-1">
           {product.description}
         </p>
 
-        <div className="flex items-center justify-between pt-2">
+        <div className="mt-auto">
           <span className="text-xl font-bold text-zinc-900 dark:text-zinc-50">
             ${price.toFixed(2)}
           </span>
-          <button className="flex h-10 w-10 items-center justify-center rounded-full bg-zinc-900 text-white transition-all hover:bg-zinc-700 active:scale-90 dark:bg-white dark:text-black dark:hover:bg-zinc-200">
-            <ShoppingCart className="h-5 w-5" />
-          </button>
+          <div className="mt-2">
+            <AddToCartButton product={product} />
+          </div>
         </div>
       </div>
     </div>
