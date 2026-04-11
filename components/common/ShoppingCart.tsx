@@ -110,7 +110,7 @@ export function useCart() {
   return context;
 }
 
-export function AddToCartButton({ product }: { product: Product }) {
+export function AddToCartButton({ product, className }: { product: Product; className?: string }) {
   const { addItem, items } = useCart();
   const existingItem = items.find((item) => item.product.id === product.id);
   const isInCart = !!existingItem;
@@ -118,7 +118,7 @@ export function AddToCartButton({ product }: { product: Product }) {
   return (
     <Button
       onClick={() => addItem(product)}
-      className="w-full"
+      className={className || "w-full"}
       variant={isInCart ? "secondary" : "default"}
       size="default"
     >
