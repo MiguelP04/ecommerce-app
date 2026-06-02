@@ -3,6 +3,7 @@ import { Nunito_Sans, Rubik } from "next/font/google";
 import { Suspense } from "react";
 import "./globals.css";
 import { Navbar } from "@/components/layout/Navbar";
+import { Footer } from "@/components/layout/Footer"
 
 const nunitoSans = Nunito_Sans({
   variable: "--font-nunito",
@@ -32,6 +33,7 @@ export default function RootLayout({
         <Suspense fallback={<div className="h-16" />}>
           <Navbar />
           <main>{children}</main>
+          <Footer />
         </Suspense>
       </body>
     </html>

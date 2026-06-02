@@ -111,27 +111,6 @@ export default async function Home({
           </div>
         </div>
       </div>
-
-      {/* Benefits Section */}
-      <section className="py-24 bg-zinc-50 dark:bg-zinc-950">
-        <div className="container mx-auto px-4">
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-12">
-            {[
-              { title: "Calidad Premium", desc: "Cada producto es seleccionado meticulosamente para garantizar la máxima durabilidad." },
-              { title: "Envío Global", desc: "Llegamos a cualquier rincón del mundo con envíos extremadamente seguros." },
-              { title: "Soporte 24/7", desc: "Nuestro equipo está siempre disponible para ayudarte con cualquier duda." }
-            ].map((benefit, i) => (
-              <div key={i} className="text-center group p-8 rounded-2xl hover:bg-white dark:hover:bg-zinc-900 transition-all hover:shadow-xl border border-transparent hover:border-zinc-100 dark:hover:border-zinc-800">
-                <div className="w-16 h-16 bg-zinc-900 dark:bg-white rounded-2xl mx-auto mb-6 flex items-center justify-center text-white dark:text-black font-bold text-2xl group-hover:scale-110 transition-transform">
-                  {i + 1}
-                </div>
-                <h3 className="text-xl font-bold mb-4">{benefit.title}</h3>
-                <p className="text-zinc-600 dark:text-zinc-400 leading-relaxed">{benefit.desc}</p>
-              </div>
-            ))}
-          </div>
-        </div>
-      </section>
     </div>
   );
 }
