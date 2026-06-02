@@ -1,7 +1,7 @@
 "use client";
 
 import { Button } from "@/components/ui/button";
-import { AddToCartButton } from "@/components/common/ShoppingCart";
+import { AddToCartButton } from "@/components/common/AddToCartButton";
 import { Product } from "@/types";
 
 interface ProductActionsProps {

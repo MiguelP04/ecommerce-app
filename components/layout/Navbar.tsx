@@ -13,7 +13,8 @@ import {
   SheetTitle,
   SheetTrigger,
 } from "@/components/ui/sheet";
-import { CartSheet, useCart } from "@/components/common/ShoppingCart";
+import { Badge } from "@/components/ui/badge";
+import { useCartStore } from "@/store/cart";
 import { cn } from "@/lib/utils";
 
 const navigation = [
@@ -28,6 +29,7 @@ export function Navbar() {
   const searchParams = useSearchParams();
   const [isScrolled, setIsScrolled] = React.useState(false);
   const [query, setQuery] = React.useState(searchParams.get("q") || "");
+  const itemCount = useCartStore((s) => s.items.reduce((sum, item) => sum + item.quantity, 0));
 
   React.useEffect(() => {
     setQuery(searchParams.get("q") || "");
@@ -110,7 +112,16 @@ export function Navbar() {
                 <Search className="h-5 w-5" />
               </Button>
 
-              <CartSheet />
+              <Button variant="ghost" size="icon" className="relative h-12 w-12" asChild>
+                <Link href="/cart">
+                  <ShoppingCart className="h-6 w-6" />
+                  {itemCount > 0 && (
+                    <Badge className="absolute -top-1 -right-1 h-5 w-5 p-0 flex items-center justify-center text-xs border-2 border-background">
+                      {itemCount}
+                    </Badge>
+                  )}
+                </Link>
+              </Button>
 
               {/* Mobile Menu */}
               <Sheet>

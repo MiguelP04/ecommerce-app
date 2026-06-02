@@ -2,7 +2,7 @@ import Image from "next/image";
 import Link from "next/link";
 import { Star } from "lucide-react";
 import { Product } from "@/types";
-import { AddToCartButton } from "./ShoppingCart";
+import { AddToCartButton } from "./AddToCartButton";
 
 interface ProductCardProps {
   product: Product;

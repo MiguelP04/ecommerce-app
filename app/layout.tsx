@@ -3,7 +3,6 @@ import { Nunito_Sans, Rubik } from "next/font/google";
 import { Suspense } from "react";
 import "./globals.css";
 import { Navbar } from "@/components/layout/Navbar";
-import { CartProvider } from "@/components/common/ShoppingCart";
 
 const nunitoSans = Nunito_Sans({
   variable: "--font-nunito",
@@ -31,10 +30,8 @@ export default function RootLayout({
         className={`${nunitoSans.variable} ${rubik.variable} antialiased selection:bg-emerald-700 selection:text-white dark:selection:bg-emerald-600 dark:selection:text-white font-sans`}
       >
         <Suspense fallback={<div className="h-16" />}>
-          <CartProvider>
-            <Navbar />
-            <main>{children}</main>
-          </CartProvider>
+          <Navbar />
+          <main>{children}</main>
         </Suspense>
       </body>
     </html>
